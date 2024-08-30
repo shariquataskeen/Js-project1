@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+
+        }
+
+        body {
+            background: #111;
+            height: 100vh;
+        }
+
+        .wrapper1 span {
+            position: fixed;
+            bottom: -180px;
+            height: 50px;
+            width: 50px;
+            z-index: -1;
+            background-color: #18191f;
+                box-shadow: 0 0 50px #ff0095,
+                0 0 100px #ff0095,
+                0 0 150px #ff0095,
+                0 0 200px #ff0095;
+            animation: animate 10s linear infinite;
+        }
+
+        .wrapper1 span:nth-child(1) {
+            left: 60px;
+            animation-delay: 0.6s;
+        }
+
+        .wrapper1 span:nth-child(2) {
+            left: 10%;
+            animation-delay: 3s;
+            width: 60px;
+            height: 60px;
+        }
+
+        .wrapper1 span:nth-child(3) {
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .wrapper1 span:nth-child(4) {
+            left: 30%;
+            animation-delay: 5s;
+            width: 80px;
+            height: 80px;
+        }
+
+        .wrapper1 span:nth-child(5) {
+            left: 40%;
+            animation-delay: 1s;
+        }
+
+        .wrapper1 span:nth-child(6) {
+            left: 50%;
+            animation-delay: 7s;
+        }
+
+        .wrapper1 span:nth-child(7) {
+            left: 60%;
+            animation-delay: 6s;
+            width: 100px;
+            height: 100px;
+        }
+
+        .wrapper1 span:nth-child(8) {
+            left: 70%;
+            animation-delay: 8s;
+        }
+
+        .wrapper1 span:nth-child(9) {
+            left: 80%;
+            animation-delay: 6s;
+            width: 90px;
+            height: 90px;
+        }
+
+        .wrapper1 span:nth-child(10) {
+            left: 90%;
+            animation-delay: 4s;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            80% {
+                opacity: .7;
+            }
+
+            100% {
+                transform: translateY(-800px) rotate(360deg);
+                opacity: 0;
+            }
+
+        }
+
+        .wrapper {
+            display: flex;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            object-fit: cover;
+            height: 100vh;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .wrapper h2 {
+            font-size: 3rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .wrapper h2 {
+            color: transparent;
+            -webkit-text-stroke: 3px white;
+            position: relative;
+        }
+
+        .wrapper h2::before {
+            content: "Welcome to Shariqua's BMI Calculator";
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient( #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+            background-clip: text;
+            -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+            border-right: 8px solid white;
+            transition: 1s ease-in-out;
+            z-index: 1;
+        }
+
+        .wrapper h2:hover::before {
+            width: 100%;
+            filter: drop-shadow(0 0 25px white);
+        }
+
+        .container {
+            background-color: #000;
+            padding: 50px;
+            border-radius: 9em 2em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 450px;
+            height: auto;
+            width: 100%;
+            color: #fff;
+            position: relative;
+
+        }
+
+        @property --angle {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        .container::after,
+        .container::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            z-index: -1;
+            padding: 10px;
+            border-radius: 9em 2em;
+            animation: 3s spin linear infinite;
+        }
+
+        .container::before {
+            filter: blur(1.5 rem);
+            opacity: 0;
+        }
+
+        @keyframes spin {
+            from {
+                --angle: 0deg;
+            }
+
+            to {
+                --angle: 360deg;
+            }
+        }
+
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 20px;
+            border: 2px solid #fff;
+            background-color: #000;
+            color: #fff;
+        }
+
+        button{
+            background-image: linear-gradient(to right, #aa076b,#006aff,#b21af3);
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 20px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        button:hover {
+           box-shadow: 0 0 5px #aa076b,
+           0 0 25px #aa076b,0 0 50px #aa076b;
+        }
+
+        p#result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        @media only screen and (max-width:1040px){
+            .wrapper{
+                padding: 20px;
+            }
+            .wrapper h2{
+                font-size: 45px;
+                white-space: nowrap;
+            }
+            .wrapper h2 {
+            -webkit-text-stroke: 2px white;
+        }
+
+        .wrapper h2::before {
+            transition: 1s ease-in-out;
+        }
+        }
+        @media only screen and (min-width:801px) and (max-width:1039px){
+            .wrapper h2{
+                font-size: 30px;
+                white-space: nowrap;
+            }
+        }
+        @media only screen and (min-width:561px) and (max-width:800px){
+            .wrapper h2{
+                font-size: 25px;
+                white-space: nowrap;
+            }
+        }
+        
+        @media only screen and (min-width:461px) and (max-width:560px){
+            .wrapper h2{
+                font-size: 20px;
+                white-space: nowrap;
+            }
+            .wrapper h2 {
+            -webkit-text-stroke: 1px white;
+        }
+        }
+        @media only screen and (min-width:401px) and (max-width:460px){
+            .wrapper h2{
+                font-size: 18px;
+                white-space: nowrap;
+            }
+            .wrapper h2 {
+            -webkit-text-stroke: 1px white;
+        }
+        }
+        @media only screen and (min-width:360px) and (max-width:400px){
+            .wrapper h2{
+                font-size: 15px;
+                white-space: nowrap;
+            }
+            .wrapper h2 {
+            -webkit-text-stroke: 1px white;
+        }
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="wrapper1">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <div class="wrapper">
+            <h2>Welcome to Shariqua's BMI Calculator</h2>
+            <div class="container">
+                <h1>BMI Calculator</h1>
+                <div class="input-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" placeholder="Enter your age">
+                </div>
+                <div class="input-group">
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" placeholder="Enter your height">
+                </div>
+                <div class="input-group">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" placeholder="Enter your weight">
+                </div>
+                <button onclick="calculateBMI()">Calculate BMI</button>
+                <p id="result"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            let age= document.getElementById('age').value;
+            let height = document.getElementById('height').value;
+            let weight = document.getElementById('weight').value;
+
+            if (height > 0 && weight > 0) {
+                let bmi = weight / (height / 100) ** 2;
+                let result = document.getElementById('result');
+                result.innerHTML = `Your BMI is ${bmi.toFixed(2)}`;
+
+                if (bmi < 18.5) {
+                    result.innerHTML += "<br> You are underweight.";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    result.innerHTML += "<br> You have a normal weight.";
+                } else if (bmi >= 25 && bmi < 29.9) {
+                    result.innerHTML += "<br> You are overweight.";
+                } else {
+                    result.innerHTML += "<br> You are obese.";
+                }
+            } else {
+                alert("Please enter valid height and weight!");
+            }
+        }
+    </script>
+
+    </div>
+</body>
+
+</html>
